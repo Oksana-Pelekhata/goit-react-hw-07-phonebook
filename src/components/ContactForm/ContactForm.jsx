@@ -3,7 +3,7 @@ import { Section, Title, Form, Label, Input, Button } from "./styled"
 import { useDispatch, useSelector } from 'react-redux';
 import { contactsSelector } from 'redux/selectors';
 import { nanoid } from 'nanoid';
-import { addNewContact } from 'redux/contactsSlice';
+import { addContact } from 'redux/contactsSlice';
 
 
 export const ContactForm = () => {
@@ -30,7 +30,7 @@ export const ContactForm = () => {
     if (contacts.some((contact)=>(contact.number === number))) {
       return alert(`Number ${number} already exists in your contacts.`);
     }
-    dispatch(addNewContact(newContact))
+    dispatch(addContact(newContact))
     e.target.reset()
   }
 
