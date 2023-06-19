@@ -1,16 +1,21 @@
+
+import React from 'react';
+import { ThemeProvider } from 'styled-components';
+import { theme } from '../theme';
+import { ContactForm } from './ContactForm';
+import { ContactList } from './ContactList/';
+import { FilterForm } from './FilterForm';
+
+
 export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
-  );
-};
+
+    return (
+      <ThemeProvider theme={theme}>
+        <ContactForm  />
+        <FilterForm
+          label="Find contacts by name"
+        />
+          <ContactList />
+      </ThemeProvider>
+    );
+  }
