@@ -8,7 +8,7 @@ import { addContactThunk } from 'redux/contacts/thunks';
 
 export const ContactForm = () => {
 
-  const contacts = useSelector(contactsSelector)
+  const {items} = useSelector(contactsSelector)
   const dispatch = useDispatch();
   
   const handleSubmit = (e) => {
@@ -23,11 +23,11 @@ export const ContactForm = () => {
       number
     }
 
-        if (contacts.some((contact)=>(contact.name.toLowerCase() === name.toLowerCase()))) {
+        if (items.some((contact)=>(contact.name.toLowerCase() === name.toLowerCase()))) {
       return alert(`${name} already exists in your contacts.`);
     }
 
-    if (contacts.some((contact)=>(contact.number === number))) {
+    if (items.some((contact)=>(contact.number === number))) {
       return alert(`Number ${number} already exists in your contacts.`);
     }
     dispatch(addContactThunk(newContact))
