@@ -9,7 +9,6 @@ import { addContactThunk } from 'redux/contacts/thunks';
 export const ContactForm = () => {
 
   const { items } = useSelector(contactsSelector)
-  console.log('items', items)
   const dispatch = useDispatch();
   
   const handleSubmit = (e) => {
@@ -17,15 +16,12 @@ export const ContactForm = () => {
 
     const name = e.target.elements.name.value
     const phone = e.target.elements.number.value
-    console.log('name', name)
-    console.log('number', phone)
-    
+
     const newContact = {
       id: nanoid(),
       name,
       phone
     }
-    console.log('newContact', newContact)
     
         if (items.some((contact)=>(contact.name.toLowerCase() === name.toLowerCase()))) {
       return alert(`Contact with the nane ${name} already exists in your contact-list.`);
