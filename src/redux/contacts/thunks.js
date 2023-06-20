@@ -12,7 +12,7 @@ export const getContactsThunk = createAsyncThunk('contacts/getContacts', (_, { r
 
 export const addContactThunk = createAsyncThunk('contacts/addContact', (contact, { rejectWithValue }) => {
     try {
-        return addContact()
+        return addContact(contact)
     } catch (error) {
         return rejectWithValue(error)
     }

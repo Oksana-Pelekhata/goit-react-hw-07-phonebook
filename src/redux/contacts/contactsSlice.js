@@ -17,7 +17,7 @@ const handleRejected = (state, { payload }) => {
         
 const handleAddContactFulfilled = (state, { payload }) => {
     state.isLoading = false;
-    state.items = [...state.items, payload];
+    state.items = [payload, ...state.items];
     state.error = '';
 }
 

@@ -8,27 +8,31 @@ import { addContactThunk } from 'redux/contacts/thunks';
 
 export const ContactForm = () => {
 
-  const {items} = useSelector(contactsSelector)
+  const { items } = useSelector(contactsSelector)
+  console.log('items', items)
   const dispatch = useDispatch();
   
   const handleSubmit = (e) => {
     e.preventDefault()
 
     const name = e.target.elements.name.value
-    const number = e.target.elements.number.value
+    const phone = e.target.elements.number.value
+    console.log('name', name)
+    console.log('number', phone)
     
     const newContact = {
       id: nanoid(),
       name,
-      number
+      phone
     }
-
+    console.log('newContact', newContact)
+    
         if (items.some((contact)=>(contact.name.toLowerCase() === name.toLowerCase()))) {
-      return alert(`${name} already exists in your contacts.`);
+      return alert(`Contact with the nane ${name} already exists in your contact-list.`);
     }
 
-    if (items.some((contact)=>(contact.number === number))) {
-      return alert(`Number ${number} already exists in your contacts.`);
+    if (items.some((contact)=>(contact.phone === phone))) {
+      return alert(`Contact with the number ${phone} already exists in your contact-list.`);
     }
     dispatch(addContactThunk(newContact))
     e.target.reset()
@@ -44,17 +48,17 @@ export const ContactForm = () => {
   name="name"
   // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
   title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-  required
+              required
                         />
                     </Label>
                     
-                    <Label htmlFor="number">Number
+                    <Label htmlFor="number">Phone
             <Input
               type="tel"
-  name="number"
-  // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-  title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-  required
+              name="number"
+              // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+              required
                         />
                 </Label>
                     <Button type="submit">Add contact</Button>
