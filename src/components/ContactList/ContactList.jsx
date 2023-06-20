@@ -1,13 +1,13 @@
 import {Section, ContactItem, ContactButton, ContactName } from './styled'
 import { useDispatch, useSelector } from 'react-redux';
 import { contactsSelector, filterSelector } from 'redux/selectors';
-import { deleteContact, getContactsThunk } from 'redux/contactsSlice';
 import { useEffect } from 'react';
+import { deleteContactThunk, getContactsThunk } from 'redux/contacts/thunks';
 
 
 export const ContactList = () => {
   const { items, isLoading, error } = useSelector(contactsSelector)
-  console.log('items', items)
+
   const dispatch = useDispatch();
 
   const { filter } = useSelector(filterSelector)
@@ -23,7 +23,7 @@ export const ContactList = () => {
   const getFilteredContacts = filterContacts()
 
   const handleDelete = (id) => {
-    dispatch(deleteContact(id))
+    dispatch(deleteContactThunk(id))
   }
   return (
     <Section>
